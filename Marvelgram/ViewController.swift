@@ -40,22 +40,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let vc = storyboard.instantiateViewController(identifier: "detailViewController") as! DetailViewController
         let hero = heroesArray[indexPath.row]
         vc.marvel = hero
-        vc.marvelArray = heroesArray
         self.navigationController?.pushViewController(vc, animated: true)
-        //selectedHero = hero
-        //performSegue(withIdentifier: "openDetail", sender: nil)
+
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "openDetail", let vc = segue.destination as? DetailViewController, let hero = selectedHero {
-            vc.marvel = hero
-            vc.marvelArray = heroesArray
-        }
-    }
- */
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         heroes.delegate = self
@@ -69,6 +57,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let filteredMarvel = marvel.filter {
                 !$0.thumbnail.path.contains("image_not_available")
             }
+            
+            let encoder = JSONEncoder()
+            if let results: Data = try? encoder.encode(filteredMarvel) {
+                UserDefaults.standard.set(results, forKey: "marvelArray")
+            }
+            
             self.heroesArray = filteredMarvel
             DispatchQueue.main.async {
                 self.heroes.reloadData()

@@ -15,7 +15,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var heroDescription: UILabel!
     
     var marvel: MarvelInfo?
-    var marvelArray: [MarvelInfo]?
+    //var marvelArray: [MarvelInfo]?
     var marvelArrayFiltered: [MarvelInfo]?
     
     override func viewDidLoad() {
@@ -26,8 +26,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         heroDescription.text  = detailMarvel.description
         self.title = detailMarvel.name
         
+        let decoder = JSONDecoder()
         
-        if let array = marvelArray {
+        if let data = UserDefaults.standard.data(forKey: "marvelArray"),
+           let array = try? decoder.decode([MarvelInfo].self, from: data) {
             marvelArrayFiltered = array.filter {$0.id != detailMarvel.id}.shuffled()
         }
         
@@ -61,7 +63,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             vc.marvel = hero
             
         }
-        vc.marvelArray = marvelArray
+        //vc.marvelArray = marvelArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
