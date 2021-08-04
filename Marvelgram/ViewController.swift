@@ -8,20 +8,23 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UISearchBarDelegate {
+    
     
     var heroesArray: [MarvelInfo] = []
     var selectedHero: MarvelInfo?
+    var filteredHeroesArray: [MarvelInfo] = []
     @IBOutlet weak var heroes: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return heroesArray.count
+        return filteredHeroesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hero", for: indexPath) as! HeroCardCollectionViewCell
-        let hero = heroesArray[indexPath.row]
+        let hero = filteredHeroesArray[indexPath.row]
         cell.heroImage.sd_setImage(with: URL(string: hero.thumbnail.path + "." + hero.thumbnail.extension) , completed: nil)
         return cell
 
@@ -38,17 +41,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "detailViewController") as! DetailViewController
-        let hero = heroesArray[indexPath.row]
+        let hero = filteredHeroesArray[indexPath.row]
         vc.marvel = hero
         self.navigationController?.pushViewController(vc, animated: true)
-
     }
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         heroes.delegate = self
         heroes.dataSource = self
-        
         NetworkService.shared.getMarvelHeroInfo { heroOption in
             guard let marvel = heroOption else {
                 print("Can't get MarvelInfo")
@@ -57,25 +59,38 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let filteredMarvel = marvel.filter {
                 !$0.thumbnail.path.contains("image_not_available")
             }
-            
             let encoder = JSONEncoder()
             if let results: Data = try? encoder.encode(filteredMarvel) {
                 UserDefaults.standard.set(results, forKey: "marvelArray")
             }
-            
             self.heroesArray = filteredMarvel
+            self.filteredHeroesArray = filteredMarvel
             DispatchQueue.main.async {
                 self.heroes.reloadData()
             }
         }
         
         setUpNavigationBar()
+        self.searchBar.placeholder = "Search"
+    }
+    
+    func searchBar (_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        if searchText != "" {
+            filteredHeroesArray = heroesArray.filter { $0.name.lowercased().contains(searchText.lowercased())}
+            heroes.reloadData()
+        }
+        else {
+            filteredHeroesArray = heroesArray
+            heroes.reloadData()
+        }
     }
     
     func setUpNavigationBar() {
         let nav = navigationController?.navigationBar
-        nav?.barTintColor = UIColor(red: 29/255, green: 29/255, blue: 29/255, alpha: 0.94)
+        //nav?.barTintColor = UIColor(red: 29/255, green: 29/255, blue: 29/255, alpha: 0.94)
+        nav?.barTintColor = .clear
+        nav?.tintColor = .clear
         nav?.tintColor = .white
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 70.51, height: 25.38))
         imageView.contentMode = .scaleAspectFit

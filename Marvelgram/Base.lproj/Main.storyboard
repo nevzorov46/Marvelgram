@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="stM-wd-uUf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xGc-OB-kjk">
                                     <size key="itemSize" width="124.33" height="124.33"/>
@@ -54,19 +54,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="lyP-6K-912">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="0.93999999999999995" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="stM-wd-uUf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EXd-J3-hkg"/>
                             <constraint firstItem="stM-wd-uUf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LZL-ne-tMO"/>
+                            <constraint firstItem="stM-wd-uUf" firstAttribute="top" secondItem="lyP-6K-912" secondAttribute="bottom" id="YeU-Zi-u75"/>
+                            <constraint firstItem="lyP-6K-912" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Zmr-gZ-vNL"/>
+                            <constraint firstItem="lyP-6K-912" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cwx-Cq-9L7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="stM-wd-uUf" secondAttribute="bottom" id="jaS-iE-HlW"/>
+                            <constraint firstItem="stM-wd-uUf" firstAttribute="top" secondItem="lyP-6K-912" secondAttribute="bottom" id="qHs-Gb-XiT"/>
+                            <constraint firstItem="lyP-6K-912" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rsF-QB-iyQ"/>
                             <constraint firstItem="stM-wd-uUf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="soL-z3-sPr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kIb-6T-5i8"/>
                     <connections>
                         <outlet property="heroes" destination="stM-wd-uUf" id="VaB-Ki-D0r"/>
+                        <outlet property="searchBar" destination="lyP-6K-912" id="HEF-hd-h3M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,6 +94,7 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
