@@ -35,7 +35,11 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         bottomHeroes.dataSource = self
         bottomHeroes.delegate = self
+        
+        bottomHeroes.contentInsetAdjustmentBehavior = .never
+        
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         marvelArrayFiltered?.count ?? 0
@@ -50,10 +54,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsPerRow: CGFloat = 3
-        let collectionViewWidth: CGFloat = collectionView.frame.width
-        let widthPerItem: CGFloat = collectionViewWidth / itemsPerRow
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        
+        return CGSize(width: 120, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
