@@ -7,7 +7,7 @@ Gallery can contain unlimited amount of pictures:
 
 ![1](https://user-images.githubusercontent.com/54248784/128606257-57c8f899-f496-40d0-b682-34499d375811.png)
 
-
+All data are fetching from the JSON file: https://static.upstarts.work/tests/marvelgram/klsZdDg50j2.json
 Character's screen shows up on it's picture tap in gallery:
 
 
