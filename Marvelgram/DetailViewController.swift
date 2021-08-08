@@ -26,6 +26,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         heroDescription.text  = detailMarvel.description
         self.title = detailMarvel.name
         
+        
         let decoder = JSONDecoder()
         
         if let data = UserDefaults.standard.data(forKey: "marvelArray"),

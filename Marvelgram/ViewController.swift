@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 
+
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UISearchBarDelegate {
     
     
@@ -32,11 +33,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        
         let itemsPerRow: CGFloat = 3
         let collectionViewWidth: CGFloat = collectionView.frame.width
         let widthPerItem: CGFloat = collectionViewWidth / itemsPerRow
         return CGSize(width: widthPerItem, height: widthPerItem)
-      
+        
+        //return CGSize(width: 120, height: 120)
     }
     
     

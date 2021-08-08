@@ -35,6 +35,7 @@
 		F64F937F26B861370022D2E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F64F938126B86C960022D2E8 /* HeroCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		F64F938326B86DA30022D2E8 /* MarvelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelInfo.swift; sourceTree = "<group>"; };
+		F671F72A26BE8E8500DD5359 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Regular.otf"; path = "../../../Downloads/San Francisco Pro Text/SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		F6A32E7C26B97F0C00C4310E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +89,7 @@
 		F64F936926B8605F0022D2E8 /* Marvelgram */ = {
 			isa = PBXGroup;
 			children = (
+				F671F72926BE8E7C00DD5359 /* Fonts */,
 				F64F937E26B8611B0022D2E8 /* Services */,
 				F64F936A26B8605F0022D2E8 /* AppDelegate.swift */,
 				F64F936C26B8605F0022D2E8 /* SceneDelegate.swift */,
@@ -109,6 +111,14 @@
 				F64F937F26B861370022D2E8 /* NetworkService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F671F72926BE8E7C00DD5359 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F671F72A26BE8E8500DD5359 /* SF-Pro-Display-Regular.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
